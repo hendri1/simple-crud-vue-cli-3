@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ toUpper }}</h1>
+    <h1>{{ toLower }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -103,12 +104,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 export default defineComponent({
   name: "HelloWorld",
   props: {
     msg: String,
+  },
+  setup(props) {
+    const toLower = computed(() => `computed ${props.msg}`.toLowerCase());
+
+    return {
+      toUpper: props.msg?.toUpperCase(),
+      toLower,
+    };
   },
 });
 </script>
